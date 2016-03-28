@@ -123,3 +123,24 @@ user 8: hejs
 Server: user 8 changed their name to magi
 magi
 magi: hshs
+Server: User 1 connected.
+magi
+Server: a user has left.
+Server: User 2 connected.
+user 2
+Server: a user has left.
+Server: User 1 connected.
+user 1
+user 1: test
+Server: user 1 changed their name to Magikarp
+Magikarp
+Magikarp: test
+Magikarp: test
+Server: User 2 connected.
+Magikarp
+Magikarp,user 2
+Server: user 2 changed their name to idiot
+idiot
+idiot,Magikarp
+idiot: test
+Magikarp: <b>test</b>

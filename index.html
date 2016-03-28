@@ -96,13 +96,14 @@
 		var socket = io();
 		
 		//user variables
+		var currentUsers = [];
 		var nick;
 		var id;
 		
 		//initial nickname and ID from server
 		socket.on('user id', function(msg) {
 			if (nick == null) {
-				nick = 'user ' + msg;
+				nick = 'User ' + msg;
 				id = msg;
 				
 				$('#nick').val(nick);
@@ -138,6 +139,11 @@
 			
 			nick = $('#nick').val();
 			return false;
+		});
+		
+		//gets currently active users from server
+		socket.on('currently active users', function(data) {
+			currentUsers = data;
 		});
 	})();
     </script>
