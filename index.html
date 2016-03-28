@@ -1,63 +1,145 @@
 <!doctype html>
 <html>
-  <head>
-    <title>Socket.IO chat</title>
-    <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      body { font: 13px Helvetica, Arial; }
-      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 70%; }
-      form input { border: 0; padding: 10px; width: 89%; margin-right: .5%; }
-      form button { width: 10%; background: rgb(130, 224, 255); border: none; padding: 10px; }
-      #nickname { background: #000; padding: 3px; position: fixed; bottom: 0; width: 30%; left: 70%; }
-      #nick{ border: 0; padding: 10px; width: 80%; margin-right: .5%; }
-      #setnic { width: 19%; background: rgb(130, 224, 255); border: none; padding: 10px }
-      
-      #messages { list-style-type: none; margin: 0; padding: 0; padding-bottom:50px;  }
-      #messages li { padding: 5px 10px; }
-      #messages li:nth-child(odd) { background: #eee; }
-      #msg {font-weight: bold; }
+	<head>
+		<title>Socket.IO chat</title>
+		<style>
+			* { 
+				margin: 0; 
+				padding: 0; 
+				box-sizing: border-box; 
+			}
+			
+			body { 
+				font: 13px Helvetica, Arial; 
+			}
+			
+			form { 
+				background: #000; 
+				padding: 3px; 
+				position: fixed; 
+				bottom: 0; 
+				width: 70%; 
+			}
+			
+			form input { 
+				border: 0; 
+				padding: 10px; 
+				width: 89%; 
+				margin-right: .5%; 
+			}
+			
+			form button { 
+				width: 10%; 
+				background: rgb(130, 224, 255); 
+				border: none; 
+				padding: 10px; 	
+			}
+			
+			#nickname { 
+				background: #000; 
+				padding: 3px; 
+				position: fixed; 
+				bottom: 0; 
+				width: 30%; 
+				left: 70%; 
+			}
+			
+			#nick{ 
+				border: 0; 
+				padding: 10px; 
+				width: 80%; 
+				margin-right: .5%; 
+			}
+			
+			#setnic { 
+				width: 19%; 
+				background: rgb(130, 224, 255); 
+				border: none; 
+				padding: 10px 
+			}
+			#messages { 
+				list-style-type: none; 
+				margin: 0; 
+				padding: 0; 
+				padding-bottom: 50px;  
+			}
+			
+			#messages li {
+				padding: 5px 10px; 
+			}
+			
+			#messages li:nth-child(odd) { 
+				background: #eee; 
+			}
+			
+			#srv {
+				font-weight: bold; 
+			}
     </style>
-  </head>
-  <body>
-    <ul id="messages"></ul>
-    <form action="" id="im">
-      <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
-    <form action="" id="nickname">
-      <input id="nick" /><button id="setnic">Set</button>
-    </form>
+	</head>
+	<body>
+		<ul id="messages"></ul>
+		<form action="" id="im">
+			<input id="m" autocomplete="off" /><button>Send</button>
+		</form>
+		<form action="" id="nickname">
+			<input id="nick" /><button id="setnic">Set</button>
+		</form>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
-      var socket = io();
-      var id;
-      var originalid;
-      socket.on('user id', function(msg) {
-        if (id == null) {
-           id = 'user ' + msg;
-           originalid = msg;
-           $('#nick').val(id);
-        }
-      });
-	  socket.on('get active users', function() {
-		socket.emit('active user',id);
-	  });
-      $('#im').submit(function(){
-        socket.emit('chat message', id + ': ' + $('#m').val());
-        $('#m').val('');
-        return false;
-      });
-      socket.on('chat message', function(msg){
-        $('#messages').append($('<li>').text(msg));
-      });
-      socket.on('server message', function(msg) {
-        $('#messages').append($('<li id="msg">').text(msg));
-      });
-      $('#nickname').submit(function() {
-        socket.emit('nickname changed', {old: id, new: $('#nick').val()});
-        id = $('#nick').val();
-        return false;
-      });
+	(function() {
+		//TODO active users list
+		//ID system for messages
+		//Cookies for nicknames
+		//connects to server
+		var socket = io();
+		
+		//user variables
+		var nick;
+		var id;
+		
+		//initial nickname and ID from server
+		socket.on('user id', function(msg) {
+			if (nick == null) {
+				nick = 'user ' + msg;
+				id = msg;
+				
+				$('#nick').val(nick);
+			}
+		});
+		
+		//tells server that the user is still connected
+		socket.on('get active users', function() {
+			socket.emit('active user', nick);
+		});
+		
+		//sends chat message to server
+		$('#im').submit(function(){
+			socket.emit('chat message', nick + ': ' + $('#m').val());
+			
+			$('#m').val('');
+			return false;
+		});
+		
+		//receives chat message from server
+		socket.on('chat message', function(msg){
+			$('#messages').append($('<li>').text(msg));
+		});
+		
+		//receives server message
+		socket.on('server message', function(msg) {
+			$('#messages').append($('<li id="srv">').text(msg));
+		});
+		
+		//sets nickname of client and sends it to server
+		$('#nickname').submit(function() {
+			socket.emit('nickname changed', {old: nick, new: $('#nick').val()});
+			
+			nick = $('#nick').val();
+			return false;
+		});
+	})();
     </script>
-  </body>
+	</body>
 </html>

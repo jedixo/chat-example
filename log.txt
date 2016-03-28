@@ -82,3 +82,44 @@ Server: User 1 connected.
 user 1
 Server: user 1 changed their name to magi
 magi
+Server: User 1 connected.
+magi
+Server: a user has left.
+Server: User 2 connected.
+user 2
+Server: User 1 connected.
+user 2
+Server: a user has left.
+Server: User 2 connected.
+user 2
+Server: user 2 changed their name to Magikarp
+Magikarp
+Server: a user has left.
+Server: User 3 connected.
+user 3
+Server: user 3 changed their name to Magikarp
+Magikarp
+Server: a user has left.
+Server: User 4 connected.
+user 4
+Server: user 4 changed their name to Magikarp
+Magikarp
+Server: a user has left.
+Server: User 5 connected.
+user 5
+Server: user 5 changed their name to Magi
+Magi
+Server: a user has left.
+Server: User 6 connected.
+user 6
+Server: a user has left.
+Server: User 7 connected.
+user 7
+Server: a user has left.
+Server: User 8 connected.
+user 8
+user 8: test
+user 8: hejs
+Server: user 8 changed their name to magi
+magi
+magi: hshs
