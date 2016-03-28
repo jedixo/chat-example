@@ -39,6 +39,9 @@
            $('#nick').val(id);
         }
       });
+	  socket.on('get active users', function() {
+		socket.emit('active user',id);
+	  });
       $('#im').submit(function(){
         socket.emit('chat message', id + ': ' + $('#m').val());
         $('#m').val('');

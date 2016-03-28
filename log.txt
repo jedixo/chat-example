@@ -1,0 +1,84 @@
+Server: 1 users connected.
+Server: 2 users connected.
+Server: Magikarp the changed their name to Magikarp
+Server: a user has left.
+Server: 1 users connected.
+Magikarp: hello
+Server: a user has left.
+Server: 0 users connected.
+Server: 1 users connected.
+Server: 0 users connected.
+Server: a user has left.
+Server: 0 users connected.
+Server: 0 users connected.
+Server: 0 users connected.
+Server: a user has left.
+Server: 1 users connected.
+Server: 0 users connected.
+Server: a user has left.
+Server: 0 users connected.
+Server: 0 users connected.
+Server: 0 users connected.
+Server: 0 users connected.
+Server: a user has left.
+Server: 0 users connected.
+Server: 0 users connected.
+Server: 0 users connected.
+Server: 0 users connected.
+Server: 0 users connected.
+Server: a user has left.
+Server: 1 users connected.
+Server: 0 users connected.
+Server: 1 users connected.
+Server: a user has left.
+Server: 0 users connected.
+Server: a user has left.
+Server: 1 users connected.
+Server: 0 users connected.
+Server: a user has left.
+Server: 0 users connected.
+Server: 0 users connected.
+Server: a user has left.
+Server: 1 users connected.
+Server: 0 users connected.
+Server: 1 users connected.
+Server: a user has left.
+Server: 0 users connected.
+Server: 0 users connected.
+Server: 1 users connected.
+Server: 2 users connected.
+Server: a user has left.
+Server: 1 users connected.
+Server: a user has left.
+Server: 0 users connected.
+Server: 1 users connected.
+Server: 1 users connected.
+Server: 2 users connected.
+Server: 1 users connected.
+Server: a user has left.
+Server: 0 users connected.
+Server: a user has left.
+Server: User 1 connected.
+Server: User 1 connected.
+Server: a user has left.
+Server: User 2 connected.
+Server: User 3 connected.
+Server: a user has left.
+Server: User 4 connected.
+Server: a user has left.
+Server: user 2 changed their name to Magikarp
+Server: User 5 connected.
+Server: a user has left.
+Server: a user has left.
+Server: User 6 connected.
+Server: User 1 connected.
+Server: user 1 changed their name to Magi
+Server: User 2 connected.
+Server: a user has left.
+Server: User 1 connected.
+user 1
+user 1: hello
+Server: User 1 connected.
+user 1
+Server: user 1 changed their name to magi
+magi
