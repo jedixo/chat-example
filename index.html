@@ -1,6 +1,5 @@
-<!doctype html>
-<html>
-	<head>
+
+<html><head>
 		<title>Socket.IO chat</title>
 		<style>
 			* { 
@@ -18,14 +17,14 @@
 				padding: 3px; 
 				position: fixed; 
 				bottom: 0; 
-				width: 70%; 
+				width: 80%; 
 			}
 			
 			form input { 
 				border: 0; 
 				padding: 10px; 
 				width: 89%; 
-				margin-right: .5%; 
+				margin-right: .7%; 
 			}
 			
 			form button { 
@@ -40,8 +39,8 @@
 				padding: 3px; 
 				position: fixed; 
 				bottom: 0; 
-				width: 30%; 
-				left: 70%; 
+				width: 20%; 
+				left: 80%; 
 			}
 			
 			#nick{ 
@@ -58,7 +57,9 @@
 				padding: 10px 
 			}
 			#messages { 
+				float:left;
 				list-style-type: none; 
+				width: 80%;
 				margin: 0; 
 				padding: 0; 
 				padding-bottom: 50px;  
@@ -66,6 +67,7 @@
 			
 			#messages li {
 				padding: 5px 10px; 
+				word-wrap:break-word;
 			}
 			
 			#messages li:nth-child(odd) { 
@@ -75,15 +77,38 @@
 			#srv {
 				font-weight: bold; 
 			}
+
+			#users {
+				position:absolute;
+				list-style-type: none; 
+				left:80%;
+				border: 5px solid black;
+				height: 100%;
+				width: 20%;
+				margin: 0; 
+				padding: 0; 
+				padding-bottom: 50px;  
+			}
+			
+			#users li {
+				padding: 5px 10px;
+				word-wrap:break-word;				
+				
+			}
+			
+			#users li:nth-child(odd) { 
+				background: #eee; 
+			}
     </style>
 	</head>
 	<body>
 		<ul id="messages"></ul>
+		<ul id="users"></ul>
 		<form action="" id="im">
-			<input id="m" autocomplete="off" /><button>Send</button>
+			<input id="m" autocomplete="off"><button>Send</button>
 		</form>
 		<form action="" id="nickname">
-			<input id="nick" /><button id="setnic">Set</button>
+			<input id="nick"><button id="setnic">Set</button>
 		</form>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
@@ -126,11 +151,14 @@
 		//receives chat message from server
 		socket.on('chat message', function(msg){
 			$('#messages').append($('<li>').text(msg));
+			window.scrollTo(0,document.body.scrollHeight);
 		});
 		
 		//receives server message
 		socket.on('server message', function(msg) {
 			$('#messages').append($('<li id="srv">').text(msg));
+			
+			window.scrollTo(0,document.body.scrollHeight);
 		});
 		
 		//sets nickname of client and sends it to server
@@ -144,8 +172,13 @@
 		//gets currently active users from server
 		socket.on('currently active users', function(data) {
 			currentUsers = data;
+			$('#users').empty();
+			for (i = 0; i < data.length; i++) {
+				$('#users').append($('<li id="usr">').text(data[i]));
+			}
 		});
 	})();
     </script>
-	</body>
-</html>
+	
+
+</body></html>
